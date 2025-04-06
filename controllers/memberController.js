@@ -26,13 +26,19 @@ const getRandomMember = async (req, res) => {
 
 // Create a new member
 const createMember = async (req, res) => {
-  const { author, text, email } = req.body;
-  if (!text || !author) {
-    return res.status(400).json({ error: 'Both text and author are required' });
+  const { author, text, email, joiningDate, interests } = req.body;
+  if (!text || !author || !email || !joiningDate || !interests) {
+    return res.status(400).json({ error: 'All fields are required' });
   }
 
   try {
-    const newMember = new Member({ text, author, email });
+    const newMember = new Member({
+      text,
+      author,
+      email,
+      joiningDate,
+      interests
+    });
     await newMember.save();
     res.status(201).json(newMember);
   } catch (error) {
@@ -40,6 +46,7 @@ const createMember = async (req, res) => {
     res.status(500).json({ message: 'Error creating member' });
   }
 };
+
 
 // Delete a member by ID
 const deleteMember = async (req, res) => {
