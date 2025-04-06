@@ -46,7 +46,7 @@ backend/
 │   └── nuggetRoutes.js
 │
 ├── server.js
-└── .env (ignored in git)
+└── .env 
 
 
 **📌 Member API Endpoints:**
